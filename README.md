@@ -7,3 +7,4 @@
 - `clashr-for-linux`: 在 Linux 上管理 clash 订阅（那时 clash 核心还不支持 SSR、linux 上也没有 [juewuy/ShellClash](https://github.com/juewuy/ShellClash)、[Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg) 这种先进的客户端）
 - `autojs`: 一些 auto.js 驱动的脚本
 - `tqm-ping`: [USTC 教学质量管理平台](https://tqm.ustc.edu.cn/)的油猴一键评价脚本
+- `auto-wlt`: 网络通断网重连脚本

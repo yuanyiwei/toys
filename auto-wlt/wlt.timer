@@ -1,10 +1,8 @@
 [Unit]
-Description=Auto Wlt Timer
+Description=Auto WLT Timer
 
 [Timer]
 OnUnitActiveSec=10min
-#OnCalendar=*-*-* 0:10
-#RandomizedDelaySec=1h
 Persistent=true
 
 [Install]

@@ -1,7 +1,7 @@
 [Unit]
-Description=Auto Wlt
+Description=Auto WLT
 After=network.target network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/wlt.sh
+ExecStart=/bin/bash /home/pi/wlt.sh

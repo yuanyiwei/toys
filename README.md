@@ -8,3 +8,4 @@
 - `autojs`: 一些 auto.js 驱动的脚本
 - `tqm-ping`: [USTC 教学质量管理平台](https://tqm.ustc.edu.cn/)的油猴一键评价脚本
 - `auto-wlt`: [网络通](http://wlt.ustc.edu.cn/)断网重连脚本
+- `tmux-run`: 一个 `run_gost.sh` 的小样例脚本，可以定义 tmux 窗口的 session、title 等信息

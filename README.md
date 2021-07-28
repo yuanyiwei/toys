@@ -9,3 +9,4 @@
 - `tqm-ping`: [USTC 教学质量管理平台](https://tqm.ustc.edu.cn/)的油猴一键评价脚本
 - `auto-wlt`: [网络通](http://wlt.ustc.edu.cn/)断网重连脚本
 - `tmux-run`: 一个 `run_gost.sh` 的小样例脚本，可以定义 tmux 窗口的 session、title 等信息
+- `rclone-backup`: 利用 A1 (或其他授权) O365 账号的 1drv 备份服务器数据（本来从 alpine 写了一个，结果发现 rclone 官方就维护了一个镜像），放 crontab 或者 systemd.timer 里均可

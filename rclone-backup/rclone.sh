@@ -6,4 +6,4 @@ docker run \
     -v /home/totoro/rclone-backup:/data:ro \
     -v /home/totoro/.config/rclone/:/config/rclone \
     rclone/rclone \
-    sync /data 1drv:backup
+    sync /data 1drv:backup --exclude "cache/"

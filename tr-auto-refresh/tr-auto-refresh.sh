@@ -1,3 +1,5 @@
+#!/bin/bash
+
 AUTH="Basic xxxxx=="
 DEST="http://xxxxx/dl/rpc"
 

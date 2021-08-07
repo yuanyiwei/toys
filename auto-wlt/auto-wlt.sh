@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 URL="http://www.baidu.com"
 NAME="totototoro"

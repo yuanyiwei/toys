@@ -1,7 +1,8 @@
 #!/bin/bash
 
+# use base64 of user:pass
 AUTH="Basic xxxxx=="
-DEST="http://xxxxx/dl/rpc"
+DEST="http://transmission-web:port/dl/rpc"
 
 while true; do
 
@@ -16,5 +17,5 @@ echo $TDATA
 # refresh peer
 curl "$DEST" -H "Authorization: $AUTH" -H 'Accept-Encoding: gzip, deflate' -H "$TSID" -H 'Content-Type: json' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'DNT: 1' --data-binary "$TDATA" --compressed
 
-sleep 60
+sleep 150
 done

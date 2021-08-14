@@ -1,10 +1,12 @@
 [Unit]
 Description=Auto WLT Timer
+After=network.target
+StartLimitIntervalSec=0
 
 [Timer]
 OnUnitActiveSec=10min
 Persistent=true
+Unit=wlt.service
 
 [Install]
 WantedBy=timers.target
-

@@ -4,7 +4,9 @@ After=network.target
 StartLimitIntervalSec=0
 
 [Timer]
-OnUnitActiveSec=10min
+OnCalendar=*-*-* *:00,10,20,30,40,50:00
+## systemd-analyze calendar "*-*-* *:00,10,20,30,40,50:00"
+# OnUnitActiveSec=10min
 Persistent=true
 Unit=wlt.service
 

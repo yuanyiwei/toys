@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 ## in crontab
-# 0 6-12/3 * * * /root/backup.sh
+# 0 6 * * * /root/run-rclone-backup.sh
 
 REMOTE=ustc-1drv-rw
-AREA=ru
-LIST="ddns wireguard"
+AREA=us
+LIST="etc/ddns etc/wireguard"
 
 
 for DIR in $LIST
 do
-    rclone sync /etc/$DIR $REMOTE:vps/$AREA/$DIR
-    # rclone copy $REMOTE:vps/$AREA/$DIR /etc/$DIR # for rollback
+    rclone sync /$DIR $REMOTE:vps/$AREA/$DIR
+    # rclone copy $REMOTE:vps/$AREA/$DIR /$DIR # for rollback
 done

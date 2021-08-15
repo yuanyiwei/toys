@@ -1,0 +1,14 @@
+[Unit]
+Description=Rclone-backup timer
+After=network.target
+StartLimitIntervalSec=0
+
+[Timer]
+OnCalendar=*-*-* 6:00:00
+# OnCalendar=*-*-* *:00,10,20,30,40,50:00
+## systemd-analyze calendar "*-*-* *:00,10,20,30,40,50:00"
+Persistent=true
+Unit=rclone-backup.service
+
+[Install]
+WantedBy=timers.target

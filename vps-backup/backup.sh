@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## in crontab
-# 0 6 * * * /root/run-rclone-backup.sh
+# 0 6 * * * /root/backup.sh
 
 REMOTE=ustc-1drv-rw
 AREA=us

@@ -4,5 +4,10 @@ After=network.target
 StartLimitIntervalSec=0
 
 [Service]
-Type=oneshot
-ExecStart=/bin/bash /root/run-rclone-backup.sh
+Type=simple
+# Type=oneshot # Service has Restart= setting other than no, which isn't allowed for Type=oneshot services
+User=root
+ExecStart=/bin/bash /root/backup.sh
+# and should not use && in ExecStart
+Restart=on-failure
+RestartSec=3

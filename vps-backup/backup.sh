@@ -5,11 +5,12 @@
 
 REMOTE=ustc-1drv-rw
 AREA=us
-LIST="etc/ddns etc/wireguard"
+ruLIST="/etc/ddns /etc/wireguard /root/backup"
+usLIST="/etc/ddns /etc/wireguard /root/ustc-checkin /root/backup"
 
 
-for DIR in $LIST
+for DIR in $usLIST
 do
-    rclone sync /$DIR $REMOTE:vps/$AREA/$DIR
-    # rclone copy $REMOTE:vps/$AREA/$DIR /$DIR # for rollback
+    rclone sync ${DIR} $REMOTE:vps/${AREA}${DIR}
+    # rclone copy $REMOTE:vps/${AREA}${DIR} ${DIR} # for rollback
 done

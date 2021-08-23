@@ -41,6 +41,7 @@ echo 'set -g mouse on' >> /root/.tmux.conf
 # iptables -A INPUT -i vpn+ -j ACCEPT
 # iptables -A INPUT -i wg+ -j ACCEPT
 # iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+# iptables -P INPUT DROP
 # /etc/init.d/netfilter-persistent save
 
 ## for rclone, copy to ~/.config/rclone/config.conf

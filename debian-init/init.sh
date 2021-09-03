@@ -31,18 +31,22 @@ apt install git curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persi
 # apt install proxychains4
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
-echo 'set -g mouse on' >> /root/.tmux.conf
+# echo 'set -g mouse on' >> /root/.tmux.conf
 
 ## save iptables
-# iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
-# iptables -A INPUT -i lo -j ACCEPT
-# iptables -A INPUT -p udp -m udp --dport 4600 -j ACCEPT
-# iptables -A INPUT -p udp -m udp --dport 4700 -j ACCEPT
-# iptables -A INPUT -i vpn+ -j ACCEPT
-# iptables -A INPUT -i wg+ -j ACCEPT
-# iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-# iptables -P INPUT DROP
-# /etc/init.d/netfilter-persistent save
+iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -p udp --dport 4600 -j ACCEPT
+iptables -A INPUT -p udp --dport 4700 -j ACCEPT
+iptables -A INPUT -p udp --dport 443 -j ACCEPT
+iptables -A INPUT -p udp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -i vpn+ -j ACCEPT
+iptables -A INPUT -i wg+ -j ACCEPT
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -P INPUT DROP
+/etc/init.d/netfilter-persistent save
 
 ## for rclone, copy to ~/.config/rclone/config.conf
 # apt install rclone

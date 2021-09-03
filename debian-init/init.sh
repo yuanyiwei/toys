@@ -47,3 +47,8 @@ echo 'set -g mouse on' >> /root/.tmux.conf
 ## for rclone, copy to ~/.config/rclone/config.conf
 # apt install rclone
 # rclone mount backup:/backup /srv
+
+wget https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz
+gzip -d gost-linux-amd64-2.11.1.gz
+chmod +x gost-linux-amd64-2.11.1
+mv gost-linux-amd64-2.11.1 /usr/local/bin/gost

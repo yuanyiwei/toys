@@ -6,6 +6,10 @@ if [ "$EUID" -ne 0 ]
 fi
 
 
+## mainly for foreign x64 VPSs
+
+
+## SSH
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
 sed -i 's/.PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
 sed -i 's/.PubkeyAuthentication .*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
@@ -33,8 +37,9 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
 # echo 'set -g mouse on' >> /root/.tmux.conf
 
+
 ## save iptables
-iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -p udp --dport 4600 -j ACCEPT
 iptables -A INPUT -p udp --dport 4700 -j ACCEPT
@@ -48,11 +53,21 @@ iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -P INPUT DROP
 /etc/init.d/netfilter-persistent save
 
+
 ## for rclone, copy to ~/.config/rclone/config.conf
-# apt install rclone
+apt install rclone
 # rclone mount backup:/backup /srv
 
+
+## gost
 wget https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz
 gzip -d gost-linux-amd64-2.11.1.gz
 chmod +x gost-linux-amd64-2.11.1
 mv gost-linux-amd64-2.11.1 /usr/local/bin/gost
+
+
+## ddns, for config.json in /etc/ddns and edit first
+wget https://github.com/NewFuture/DDNS/releases/download/v2.10.2/ddns
+chmod +x ddns
+mv ddns /usr/local/bin
+# cd /etc/ddns && ddns

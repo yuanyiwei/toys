@@ -71,3 +71,9 @@ wget https://github.com/NewFuture/DDNS/releases/download/v2.10.2/ddns
 chmod +x ddns
 mv ddns /usr/local/bin
 # cd /etc/ddns && ddns
+
+## nali
+curl https://github.com/zu1k/nali/releases/download/v0.3.1/nali-linux-amd64-v0.3.1.gz -OL
+gzip -d nali-linux-amd64-v0.3.1.gz
+chmod +x nali-linux-amd64-v0.3.1
+mv nali-linux-amd64-v0.3.1 /usr/local/bin

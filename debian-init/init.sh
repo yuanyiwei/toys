@@ -29,10 +29,12 @@ systemctl restart sshd
 # sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 # sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
 
-apt update
-apt upgrade
-apt install git curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent
-# apt install proxychains4
+
+# export DEBIAN_FRONTEND=noninteractive
+apt update -qq
+apt upgrade -qqy
+apt install -qqy git curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent
+# apt install -qqy proxychains4
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
 # echo 'set -g mouse on' >> /root/.tmux.conf
@@ -55,7 +57,7 @@ iptables -P INPUT DROP
 
 
 ## for rclone, copy to ~/.config/rclone/config.conf
-apt install rclone
+apt install -qqy rclone
 # rclone mount backup:/backup /srv
 
 
@@ -71,6 +73,7 @@ wget https://github.com/NewFuture/DDNS/releases/download/v2.10.2/ddns
 chmod +x ddns
 mv ddns /usr/local/bin
 # cd /etc/ddns && ddns
+
 
 ## nali
 curl https://github.com/zu1k/nali/releases/download/v0.3.1/nali-linux-amd64-v0.3.1.gz -OL

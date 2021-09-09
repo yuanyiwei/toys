@@ -43,14 +43,13 @@ sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
 ## save iptables
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -p udp --dport 4600 -j ACCEPT
-iptables -A INPUT -p udp --dport 4700 -j ACCEPT
+iptables -A INPUT -p icmp -j ACCEPT
 iptables -A INPUT -p udp --dport 443 -j ACCEPT
 iptables -A INPUT -p udp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-iptables -A INPUT -i vpn+ -j ACCEPT
-iptables -A INPUT -i wg+ -j ACCEPT
+# iptables -A INPUT -i vpn+ -j ACCEPT
+# iptables -A INPUT -i wg+ -j ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -P INPUT DROP
 /etc/init.d/netfilter-persistent save
@@ -80,3 +79,9 @@ curl https://github.com/zu1k/nali/releases/download/v0.3.1/nali-linux-amd64-v0.3
 gzip -d nali-linux-amd64-v0.3.1.gz
 chmod +x nali-linux-amd64-v0.3.1
 mv nali-linux-amd64-v0.3.1 /usr/local/bin/nali
+
+
+## backup
+mkdir /root/backup -p
+curl https://raw.githubusercontent.com/yuanyiwei/toys/master/vps-backup/backup.sh -OL
+mv ./backup.sh /root/backup

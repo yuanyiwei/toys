@@ -33,7 +33,7 @@ systemctl restart sshd
 # export DEBIAN_FRONTEND=noninteractive
 apt update -qq
 apt upgrade -qqy
-apt install -qqy git curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent
+apt install -qqy git curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop
 # apt install -qqy proxychains4
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc

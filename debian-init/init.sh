@@ -11,6 +11,7 @@ fi
 
 ## SSH
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+sed -i 's/.\?Port .*/Port 22/' /etc/ssh/sshd_config
 sed -i 's/.PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
 sed -i 's/.PubkeyAuthentication .*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 sed -i 's/.PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config

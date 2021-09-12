@@ -34,10 +34,12 @@ systemctl restart sshd
 # export DEBIAN_FRONTEND=noninteractive
 apt update -qq
 apt upgrade -qqy
-apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop
+apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop nload iftop
 # apt install -qqy proxychains4
+# apt install -qqy docker.io
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
+# chsh -s /usr/bin/zsh
 # echo 'set -g mouse on' >> /root/.tmux.conf
 
 
@@ -56,9 +58,16 @@ iptables -P INPUT DROP
 /etc/init.d/netfilter-persistent save
 
 
-## for rclone, copy to ~/.config/rclone/config.conf
+## for rclone, copy to ~/.config/rclone/config.conf , run rclone first to creat path
 apt install -qqy rclone
 # rclone mount backup:/backup /srv
+
+
+## backup
+mkdir /root/backup -p
+curl https://raw.githubusercontent.com/yuanyiwei/toys/master/vps-backup/backup.sh -OL
+mv ./backup.sh /root
+## do not mix tmp backup script with the specific one in rclone
 
 
 ## gost
@@ -80,9 +89,3 @@ curl https://github.com/zu1k/nali/releases/download/v0.3.1/nali-linux-amd64-v0.3
 gzip -d nali-linux-amd64-v0.3.1.gz
 chmod +x nali-linux-amd64-v0.3.1
 mv nali-linux-amd64-v0.3.1 /usr/local/bin/nali
-
-
-## backup
-mkdir /root/backup -p
-curl https://raw.githubusercontent.com/yuanyiwei/toys/master/vps-backup/backup.sh -OL
-mv ./backup.sh /root/backup

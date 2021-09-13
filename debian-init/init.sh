@@ -34,7 +34,8 @@ systemctl restart sshd
 # export DEBIAN_FRONTEND=noninteractive
 apt update -qq
 apt upgrade -qqy
-apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop nload iftop mtr-tiny iptraf-ng
+apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop nload iftop mtr-tiny
+# apt install -qqy iptraf-ng
 # apt install -qqy proxychains4
 # apt install -qqy docker.io
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

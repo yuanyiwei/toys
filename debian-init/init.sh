@@ -89,7 +89,7 @@ mv ddns /usr/local/bin
 
 ## nali
 nali_version=v0.3.1
-curl https://github.com/zu1k/nali/releases/download/v0.3.1/nali-linux-amd64-${nali_version}.gz -OL
+curl https://github.com/zu1k/nali/releases/download/${nali_version}/nali-linux-amd64-${nali_version}.gz -OL
 gzip -d nali-linux-amd64-${nali_version}.gz
 chmod +x nali-linux-amd64-${nali_version}
 mv nali-linux-amd64-${nali_version} /usr/local/bin/nali

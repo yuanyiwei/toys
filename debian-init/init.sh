@@ -54,6 +54,7 @@ iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 # iptables -A INPUT -i vpn+ -j ACCEPT
 # iptables -A INPUT -i wg+ -j ACCEPT
+## TODO: add ipset to ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -P INPUT DROP
 /etc/init.d/netfilter-persistent save
@@ -72,10 +73,11 @@ mv ./backup.sh /root
 
 
 ## gost
-wget https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz
-gzip -d gost-linux-amd64-2.11.1.gz
-chmod +x gost-linux-amd64-2.11.1
-mv gost-linux-amd64-2.11.1 /usr/local/bin/gost
+gost_version=2.11.1
+wget https://github.com/ginuerzh/gost/releases/download/v${gost_version}/gost-linux-amd64-${gost_version}.gz
+gzip -d gost-linux-amd64-${gost_version}.gz
+chmod +x gost-linux-amd64-${gost_version}
+mv gost-linux-amd64-${gost_version} /usr/local/bin/gost
 
 
 ## ddns, for config.json in /etc/ddns and edit first
@@ -86,7 +88,8 @@ mv ddns /usr/local/bin
 
 
 ## nali
-curl https://github.com/zu1k/nali/releases/download/v0.3.1/nali-linux-amd64-v0.3.1.gz -OL
-gzip -d nali-linux-amd64-v0.3.1.gz
-chmod +x nali-linux-amd64-v0.3.1
-mv nali-linux-amd64-v0.3.1 /usr/local/bin/nali
+nali_version=v0.3.1
+curl https://github.com/zu1k/nali/releases/download/v0.3.1/nali-linux-amd64-${nali_version}.gz -OL
+gzip -d nali-linux-amd64-${nali_version}.gz
+chmod +x nali-linux-amd64-${nali_version}
+mv nali-linux-amd64-${nali_version} /usr/local/bin/nali

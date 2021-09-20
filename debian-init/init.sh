@@ -35,6 +35,7 @@ systemctl restart sshd
 apt update -qq
 apt upgrade -qqy
 apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop nload iftop mtr-tiny
+# apt install -qqy ipset ipset-persistent
 # apt install -qqy iptraf-ng
 # apt install -qqy proxychains4
 # apt install -qqy docker.io
@@ -50,6 +51,13 @@ echo "[user]\n\tname = totoro\n\temail = totoro@yyw.moe" > /root/.gitconfig
 # expect -c 'spawn gpg --edit-key EDE2551D6DE7B751168AE6FCD546F016544765FB trust quit; send "5\ry\r"; expect eof'
 
 
+## add ipset to ACCEPT
+# ipset create whitelist hash:net
+# iptables -A INPUT -m set --match-set whitelist src -j ACCEPT
+# ipset add whitelist xxx
+# /etc/init.d/ipset-persistent save
+
+
 ## save iptables
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
@@ -60,7 +68,6 @@ iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 # iptables -A INPUT -i vpn+ -j ACCEPT
 # iptables -A INPUT -i wg+ -j ACCEPT
-## TODO: add ipset to ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -P INPUT DROP
 /etc/init.d/netfilter-persistent save

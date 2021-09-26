@@ -34,9 +34,9 @@ systemctl restart sshd
 # export DEBIAN_FRONTEND=noninteractive
 apt update -qq
 apt upgrade -qqy
-apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop nload iftop mtr-tiny
+apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop nload iftop socat
 # apt install -qqy ipset ipset-persistent
-# apt install -qqy iptraf-ng
+# apt install -qqy iptraf-ng mtr-tiny
 # apt install -qqy proxychains4
 # apt install -qqy docker.io
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -106,3 +106,11 @@ curl https://github.com/zu1k/nali/releases/download/${nali_version}/nali-linux-a
 gzip -d nali-linux-amd64-${nali_version}.gz
 chmod +x nali-linux-amd64-${nali_version}
 mv nali-linux-amd64-${nali_version} /usr/local/bin/nali
+
+
+## acme
+# wget -O -  https://get.acme.sh | sh
+# source ~/.zshrc
+# acme.sh --upgrade --auto-upgrade
+# acme.sh --issue --standalone --server letsencrypt -d s.yyw.moe --keylength ec-256
+# acme.sh --install-cert -d s.yyw.moe --ecc --fullchain-file ~/tls/cert.crt --key-file ~/tls/cert.key

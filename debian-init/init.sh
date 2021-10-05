@@ -45,9 +45,9 @@ sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
 # chsh -s /usr/bin/zsh
 # echo 'set -g mouse on' >> /root/.tmux.conf
 
-echo "[user]\n\tname = totoro\n\temail = totoro@yyw.moe" > /root/.gitconfig
+echo -e "[user]\n\tname = totoro\n\temail = totoro@yyw.moe" > /root/.gitconfig
 ## use gpg in desktop
-# echo "[user]\n\tname = totoro\n\temail = totoro@yyw.moe\n\tsigningkey = 544765FB\n[commit]\n\tgpgSign = true" > /root/.gitconfig
+# echo -e "[user]\n\tname = totoro\n\temail = totoro@yyw.moe\n\tsigningkey = 544765FB\n[commit]\n\tgpgSign = true" > /root/.gitconfig
 # gpg --import-options restore --import private.gpg
 # expect -c 'spawn gpg --edit-key EDE2551D6DE7B751168AE6FCD546F016544765FB trust quit; send "5\ry\r"; expect eof'
 

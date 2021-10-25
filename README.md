@@ -1,8 +1,7 @@
 # toys
 
-一些玩具，放一些小到不适合单独开仓库的代码和项目。（用的时候请注意 commit 日期，小心已废弃、用来记录的项目）
+一些玩具，放一些小到不适合单独开仓库的代码和项目。
 
-- `tqm-ping`: [科带教学质量管理平台](https://tqm.ustc.edu.cn/)的油猴一键评价脚本。
 - `auto-wlt`: [科带网络通](http://wlt.ustc.edu.cn/)断网重连脚本。
 - `tmux-run`: 一个 `run_gost.sh` 的小样例脚本，可以定义 tmux 窗口的 session、title 等信息。
 - `tr-auto-refresh`: transmission 自动刷新 tracker，参照 <https://yqf3139.github.io/2016/09/10/find-more-transmission-peers-to-boost-seeding-speed-automaticly/>，加入了 Auth 头，是 user:pass 的 base64。
@@ -13,7 +12,8 @@ _Deprecated_:
 
 - `clashr-for-linux` : 在 Linux 上管理 clash 订阅（那时 clash 核心还不支持 SSR、linux 上也没有 [juewuy/ShellClash](https://github.com/juewuy/ShellClash)、[Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg) 这种先进的客户端），现在都有 Clash for Windows for Linux 了 QaQ。
 - `autojs` : 一些 auto.js 驱动的脚本。
-- `pdf-catalog`: 结合 <https://github.com/ifnoelse/pdf-bookmark> 项目，用 Python 正则和 OCR 识别到正确的目录，里面是第三版龙书的样例。
+- `pdf-catalog`: 结合 <https://github.com/ifnoelse/pdf-bookmark> 项目，用 Python 正则和 OCR 识别给没有目录的 PDF 加上目录，里面是第三版龙书的样例。
+- `tqm-ping`: [科带教学质量管理平台](https://tqm.ustc.edu.cn/)的油猴一键评价脚本。（已经没法用了，大四了也用不到了）
 
 ## donation
 

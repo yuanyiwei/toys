@@ -40,6 +40,8 @@ apt install -qqy nload iftop vnstat sysstat
 # apt install -qqy iptraf-ng mtr-tiny
 # apt install -qqy proxychains4
 # apt install -qqy docker.io
+## can add netdata, cockpit, glances (python) or telegraf later to monitor vps
+# apt install -qqy netdata
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
 # chsh -s /usr/bin/zsh

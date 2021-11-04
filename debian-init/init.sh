@@ -73,6 +73,7 @@ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 # iptables -A INPUT -i wg+ -j ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -P INPUT DROP
+iptables -A OUTPUT -p tcp --dport 25 -j DROP
 /etc/init.d/netfilter-persistent save
 
 

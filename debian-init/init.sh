@@ -118,3 +118,11 @@ mv nali-linux-amd64-${nali_version} /usr/local/bin/nali
 # acme.sh --upgrade --auto-upgrade
 # acme.sh --issue --standalone --server letsencrypt -d s.yyw.moe --keylength ec-256
 # acme.sh --install-cert -d s.yyw.moe --ecc --fullchain-file ~/tls/cert.crt --key-file ~/tls/cert.key
+
+
+## BBR
+# echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+# echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+# sysctl -p
+sysctl net.ipv4.tcp_available_congestion_control
+# lsmod | grep bbr

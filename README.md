@@ -7,6 +7,7 @@
 - `tr-auto-refresh`: transmission 自动刷新 tracker，参照 <https://yqf3139.github.io/2016/09/10/find-more-transmission-peers-to-boost-seeding-speed-automaticly/>，加入了 Auth 头，是 user:pass 的 base64。
 - `debian-init`: 买了很多月抛机器，init 到手累了，写了个初始化脚本。
 - `vps-backup`: 不稳定的月抛机器需要备份，利用 rclone 每天备份数据到科带 A1 (或其他授权) O365 账号的 1drv 中，计时器用 crontab 或者 systemd.timer 均可。
+- `chn-ip`: 获取中国 IP 地址，自用。
 
 _Deprecated_:
 

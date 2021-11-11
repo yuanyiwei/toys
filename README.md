@@ -8,6 +8,7 @@
 - `debian-init`: 买了很多月抛机器，init 到手累了，写了个初始化脚本。
 - `vps-backup`: 不稳定的月抛机器需要备份，利用 rclone 每天备份数据到科带 A1 (或其他授权) O365 账号的 1drv 中，计时器用 crontab 或者 systemd.timer 均可。
 - `chn-ip`: 获取中国 IP 地址，自用。
+- `sub`: 手动订阅，自用。原因是之前在 Qv2ray 变 Archive 后和 myl 聊到订阅解析的问题，想手动写个轮子。
 
 _Deprecated_:
 

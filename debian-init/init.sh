@@ -9,6 +9,27 @@ fi
 ## mainly for foreign x64 VPSs
 
 
+## change source in china
+# sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+# sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+
+# sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+# sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
+
+
+# export DEBIAN_FRONTEND=noninteractive
+apt update -qq
+apt upgrade -qqy
+apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils # fail2ban (with python2.7 in buster)
+apt install -qqy nload iftop vnstat sysstat
+# apt install -qqy ipset ipset-persistent
+# apt install -qqy iptraf-ng mtr-tiny
+# apt install -qqy proxychains4
+# apt install -qqy docker.io
+## can add netdata, cockpit, glances (python) or telegraf later to monitor vps
+# apt install -qqy netdata
+
+
 ## SSH
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
 sed -i 's/^.\?Port .*/Port 22/' /etc/ssh/sshd_config
@@ -23,25 +44,6 @@ chmod 644 /root/.ssh/authorized_keys
 systemctl restart sshd
 
 
-## change source in china
-# sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-# sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-
-# sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-# sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
-
-
-# export DEBIAN_FRONTEND=noninteractive
-apt update -qq
-apt upgrade -qqy
-apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim fail2ban iptables-persistent htop socat dnsutils
-apt install -qqy nload iftop vnstat sysstat
-# apt install -qqy ipset ipset-persistent
-# apt install -qqy iptraf-ng mtr-tiny
-# apt install -qqy proxychains4
-# apt install -qqy docker.io
-## can add netdata, cockpit, glances (python) or telegraf later to monitor vps
-# apt install -qqy netdata
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
 # chsh -s /usr/bin/zsh

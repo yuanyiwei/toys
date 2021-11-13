@@ -21,7 +21,7 @@ fi
 apt update -qq
 apt upgrade -qqy
 apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils # fail2ban (with python2.7 in buster)
-apt install -qqy nload iftop vnstat sysstat
+apt install -qqy nload iftop vnstat vnstati sysstat
 # apt install -qqy ipset ipset-persistent
 # apt install -qqy iptraf-ng mtr-tiny
 # apt install -qqy proxychains4

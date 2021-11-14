@@ -55,3 +55,6 @@ def get_sub_info(subscribe_urls):
 
 # print(get_subscribe_urls(subscribe_urls))
 print(get_sub_info(subscribe_urls))
+
+
+## TODO: just have SIP008 now, try add OOCv1 later

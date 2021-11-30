@@ -40,6 +40,7 @@ sed -i 's/^.\?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/ssh
 mkdir /root/.ssh 2>&1
 curl https://github.com/yuanyiwei.keys > /root/.ssh/authorized_keys
 chmod 644 /root/.ssh/authorized_keys
+chmod 755 /root/.ssh # ? Authentication refused: bad ownership or modes for directory /home/yyw/.ssh
 
 systemctl restart sshd
 

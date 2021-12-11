@@ -102,7 +102,7 @@ mv gost-linux-amd64-${gost_version} /usr/local/bin/gost
 
 
 ## ddns, for config.json in /etc/ddns and edit first
-wget https://github.com/NewFuture/DDNS/releases/download/v2.10.2/ddns
+wget https://github.com/NewFuture/DDNS/releases/download/v2.10.3/ddns
 chmod +x ddns
 mv ddns /usr/local/bin
 # cd /etc/ddns && ddns

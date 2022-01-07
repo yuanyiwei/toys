@@ -95,11 +95,18 @@ mv ./backup.sh /root
 
 
 ## gost
-gost_version=2.11.1
-wget https://github.com/ginuerzh/gost/releases/download/v${gost_version}/gost-linux-amd64-${gost_version}.gz
-gzip -d gost-linux-amd64-${gost_version}.gz
-chmod +x gost-linux-amd64-${gost_version}
-mv gost-linux-amd64-${gost_version} /usr/local/bin/gost
+# gost_version=2.11.1
+# wget https://github.com/ginuerzh/gost/releases/download/v${gost_version}/gost-linux-amd64-${gost_version}.gz
+# gzip -d gost-linux-amd64-${gost_version}.gz
+# chmod +x gost-linux-amd64-${gost_version}
+# mv gost-linux-amd64-${gost_version} /usr/local/bin/gost
+
+
+## ehco
+ehco_version=1.1.1
+curl -L https://github.com/Ehco1996/ehco/releases/download/v${ehco_version}/ehco_${ehco_version}_linux_amd64 -O
+mv ehco_${ehco_version}_linux_amd64 /usr/local/bin/ehco
+chmod +x /usr/local/bin/ehco
 
 
 ## ddns, for config.json in /etc/ddns and edit first

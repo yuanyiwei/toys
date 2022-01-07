@@ -117,7 +117,7 @@ mv ddns /usr/local/bin
 
 
 ## nali
-nali_version=v0.3.1
+nali_version=v0.3.5
 curl https://github.com/zu1k/nali/releases/download/${nali_version}/nali-linux-amd64-${nali_version}.gz -OL
 gzip -d nali-linux-amd64-${nali_version}.gz
 chmod +x nali-linux-amd64-${nali_version}
@@ -133,8 +133,8 @@ mv nali-linux-amd64-${nali_version} /usr/local/bin/nali
 
 
 ## BBR
-# echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
-# echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
-# sysctl -p
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
 sysctl net.ipv4.tcp_available_congestion_control
-# lsmod | grep bbr
+lsmod | grep bbr

@@ -6,7 +6,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 
-## mainly for foreign x64 VPSs
+## mainly for foreign x64 Debian11 VPSs
 
 
 ## change source in china
@@ -21,11 +21,11 @@ fi
 apt update -qq
 apt upgrade -qqy
 ## should update to stable first and use `apt upgrade --without-new-pkgs` and `apt full-upgrade`
-apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils # fail2ban (with python2.7 in buster)
+apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils mtr-tiny fail2ban # (fail2ban with python2.7 in buster)
 apt install -qqy nload iftop vnstat vnstati sysstat
 apt install -qqy wireguard
 ## apt install -qqy ipset ipset-persistent
-# apt install -qqy iptraf-ng mtr-tiny
+# apt install -qqy iptraf-ng
 # apt install -qqy proxychains4
 # apt install -qqy docker.io docker-compose # (with python2.7 in buster)
 ## can add netdata, cockpit, glances (python) or telegraf later to monitor vps

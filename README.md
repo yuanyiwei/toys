@@ -8,6 +8,7 @@
 - `debian-init`: 买了很多月抛机器，init 到手累了，写了个初始化脚本。
 - `vps-backup`: 不稳定的月抛机器需要备份，利用 rclone 每天备份数据到科带 A1 (或其他授权) O365 账号的 1drv 中，计时器用 crontab 或者 systemd.timer 均可。
 - `chn-ip`: 获取中国 IP 地址，自用。
+- `stat`: 从 MobaXterm 里找出来的获取资源占用的脚本，无需 Root，关于 MobaXterm 本地怎么处理还没看，netstat 处理有点问题。
 
 _Deprecated_:
 

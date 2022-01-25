@@ -17,6 +17,7 @@ _Deprecated_:
 - `autojs` : 一些 auto.js 驱动的脚本。
 - `pdf-catalog`: 结合 <https://github.com/ifnoelse/pdf-bookmark> 项目，用 Python 正则和 OCR 识别给没有目录的 PDF 加上目录，里面是第三版龙书的样例。
 - `tqm-ping`: [科带教学质量管理平台](https://tqm.ustc.edu.cn/)的油猴一键评价脚本。（已经没法用了，大四了也用不到了）
+- `python-proxy`: 学习 FSM。
 
 ## donation
 

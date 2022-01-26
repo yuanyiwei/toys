@@ -17,6 +17,12 @@ fi
 # sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
 
 
+# apt upgrade --without-new-pkgs
+# apt full-upgrade
+# apt autoremove --purge
+# apt update && apt upgrade
+
+
 # export DEBIAN_FRONTEND=noninteractive
 apt update -qq
 apt upgrade -qqy

@@ -29,7 +29,7 @@ apt upgrade -qqy
 ## should update to stable first and use `apt upgrade --without-new-pkgs` and `apt full-upgrade`
 apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils mtr-tiny fail2ban # (fail2ban with python2.7 in buster)
 apt install -qqy nload iftop vnstat vnstati sysstat
-apt install -qqy wireguard
+apt install -qqy wireguard # resolvconf
 ## apt install -qqy ipset ipset-persistent
 # apt install -qqy iptraf-ng
 # apt install -qqy proxychains4
@@ -138,9 +138,14 @@ mv nali-linux-amd64-${nali_version} /usr/local/bin/nali
 # acme.sh --install-cert -d s.yyw.moe --ecc --fullchain-file ~/tls/cert.crt --key-file ~/tls/cert.key
 
 
-## BBR
-echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
-echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
-sysctl -p
+## BBR, use xanmod kernel instead
+# echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+# echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+# sysctl -p
+echo 'deb http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-kernel.list
+# wget -qO - https://dl.xanmod.org/gpg.key | apt-key --keyring /etc/apt/trusted.gpg.d/xanmod-kernel.gpg add -
+curl -s https://dl.xanmod.org/gpg.key | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/xanmod-kernel.gpg --import
+apt update && apt install linux-xanmod
+sysctl net.core.default_qdisc
 sysctl net.ipv4.tcp_available_congestion_control
-lsmod | grep bbr
+# lsmod | grep bbr

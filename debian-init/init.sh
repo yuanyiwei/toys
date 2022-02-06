@@ -55,6 +55,7 @@ systemctl restart sshd
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
+echo 'precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }' >> /root/.zshrc # For OSC1337
 # chsh -s /usr/bin/zsh
 # echo 'set -g mouse on' >> /root/.tmux.conf
 

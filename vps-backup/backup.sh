@@ -18,3 +18,5 @@ do
 done
 
 ## then use /root/backup/backup.sh to rollback
+
+echo "$(hostname) backup ok"

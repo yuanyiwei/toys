@@ -27,9 +27,9 @@ fi
 apt update -qq
 apt upgrade -qqy
 ## should update to stable first and use `apt upgrade --without-new-pkgs` and `apt full-upgrade`
-apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils mtr-tiny fail2ban # (fail2ban with python2.7 in buster)
+apt install -qqy git wget curl fish python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils mtr-tiny fail2ban # (fail2ban with python2.7 in buster)
 apt install -qqy nload iftop vnstat vnstati sysstat
-apt install -qqy wireguard # resolvconf
+# apt install -qqy wireguard # resolvconf
 ## apt install -qqy ipset ipset-persistent
 # apt install -qqy iptraf-ng
 # apt install -qqy proxychains4
@@ -52,11 +52,7 @@ chmod 755 /root/.ssh # ? Authentication refused: bad ownership or modes for dire
 
 systemctl restart sshd
 
-
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
-echo 'precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }' >> /root/.zshrc # For OSC1337
-# chsh -s /usr/bin/zsh
+# chsh -s /usr/bin/fish
 # echo 'set -g mouse on' >> /root/.tmux.conf
 
 echo -e "[user]\n\tname = totoro\n\temail = totoro@yyw.moe" > /root/.gitconfig
@@ -72,7 +68,6 @@ echo -e "[user]\n\tname = totoro\n\temail = totoro@yyw.moe" > /root/.gitconfig
 # ipset add whitelist xxx
 # /etc/init.d/ipset-persistent save
 
-
 ## save iptables
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
@@ -84,6 +79,7 @@ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 # iptables -A INPUT -i vpn+ -j ACCEPT
 # iptables -A INPUT -i wg+ -j ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp --tcp-flags RST RST -j DROP
 iptables -P INPUT DROP
 iptables -A OUTPUT -p tcp --dport 25 -j DROP
 /etc/init.d/netfilter-persistent save
@@ -110,10 +106,10 @@ mv ./backup.sh /root
 
 
 ## ehco
-ehco_version=1.1.1
-curl -L https://github.com/Ehco1996/ehco/releases/download/v${ehco_version}/ehco_${ehco_version}_linux_amd64 -O
-mv ehco_${ehco_version}_linux_amd64 /usr/local/bin/ehco
-chmod +x /usr/local/bin/ehco
+# ehco_version=1.1.1
+# curl -L https://github.com/Ehco1996/ehco/releases/download/v${ehco_version}/ehco_${ehco_version}_linux_amd64 -O
+# mv ehco_${ehco_version}_linux_amd64 /usr/local/bin/ehco
+# chmod +x /usr/local/bin/ehco
 
 
 ## ddns, for config.json in /etc/ddns and edit first
@@ -124,11 +120,11 @@ mv ddns /usr/local/bin
 
 
 ## nali
-nali_version=v0.3.5
-curl https://github.com/zu1k/nali/releases/download/${nali_version}/nali-linux-amd64-${nali_version}.gz -OL
-gzip -d nali-linux-amd64-${nali_version}.gz
-chmod +x nali-linux-amd64-${nali_version}
-mv nali-linux-amd64-${nali_version} /usr/local/bin/nali
+# nali_version=v0.3.5
+# curl https://github.com/zu1k/nali/releases/download/${nali_version}/nali-linux-amd64-${nali_version}.gz -OL
+# gzip -d nali-linux-amd64-${nali_version}.gz
+# chmod +x nali-linux-amd64-${nali_version}
+# mv nali-linux-amd64-${nali_version} /usr/local/bin/nali
 
 
 ## acme

@@ -9,10 +9,10 @@
 - `vps-backup`: 不稳定的月抛机器需要备份，利用 rclone 每天备份数据到科带 A1 (或其他授权) O365 账号的 1drv 中，计时器用 crontab 或者 systemd.timer 均可。
 - `chn-ip`: 获取中国 IP 地址，自用。
 - `stat`: 从 MobaXterm 里找出来的获取资源占用的脚本，无需 Root，关于 MobaXterm 本地怎么处理还没看，netstat 处理有点问题。
+- `clash2base64`: clash 订阅转 v2ray base64 订阅，自用。
 
 _Deprecated_:
 
-- `sub`: ~~手动订阅，自用。原因是之前在 Qv2ray 变 Archive 后和 myl 聊到订阅解析的问题，想手动写个轮子。~~有点奇怪，不用了。
 - `clashr-for-linux` : 在 Linux 上管理 clash 订阅（那时 clash 核心还不支持 SSR、linux 上也没有 [juewuy/ShellClash](https://github.com/juewuy/ShellClash)、[Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg) 这种先进的客户端），现在都有 Clash for Windows for Linux 了 QaQ。
 - `autojs` : 一些 auto.js 驱动的脚本。
 - `pdf-catalog`: 结合 <https://github.com/ifnoelse/pdf-bookmark> 项目，用 Python 正则和 OCR 识别给没有目录的 PDF 加上目录，里面是第三版龙书的样例。

@@ -20,7 +20,7 @@ def safe_base64_decode(s):
 def get_sharelinks(subscribe_urls):
     share_links = []
     for subscribe_url in subscribe_urls:
-        return_content = requests.get(subscribe_url,headers = {'user-agent': 'clash'}).text
+        return_content = requests.get(subscribe_url).text
         yaml_content = yaml.safe_load(return_content)
         for proxy in yaml_content['proxies']:
             share_links.append(clash2v2ray(proxy))

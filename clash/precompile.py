@@ -68,7 +68,7 @@ def precompile(subscribe_url):
             continue
         if proxy['name'].find('Hong Kong') != -1 or proxy['name'].find('HK') != -1 or proxy['name'].find('hk') != -1 or proxy['name'].find('l') != -1:
             HKLBproxies.append(proxy['name'])
-        if proxy['name'].find('out') != -1:
+        if proxy['name'].find('out') == -1:
             Latencyproxies.append(proxy['name'])
 
     if len(HKLBproxies) > 0:

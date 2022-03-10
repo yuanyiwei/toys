@@ -2,6 +2,10 @@ import requests
 import yaml
 # pyyaml
 
+subscribe_urls = [
+    'https://sub.yyw.moe',
+]
+
 Rules = [
     "DOMAIN-SUFFIX,ip6-localhost,DIRECT",
     "DOMAIN-SUFFIX,ip6-loopback,DIRECT",
@@ -57,21 +61,21 @@ def precompile(subscribe_url):
     content['rules'].append("MATCH," + content['proxy-groups'][0]['name'])
 
     HKLBproxies = []
+    Latencyproxies = []
+
     for proxy in content['proxies']:
         if proxy['server'] == '127.0.0.1':
             continue
         if proxy['name'].find('Hong Kong') != -1 or proxy['name'].find('HK') != -1 or proxy['name'].find('hk') != -1 or proxy['name'].find('l') != -1:
             HKLBproxies.append(proxy['name'])
+        if proxy['name'].find('out') != -1:
+            Latencyproxies.append(proxy['name'])
+
     if len(HKLBproxies) > 0:
         content['proxy-groups'].append({'name': "HKLB", 'type': "load-balance", 'proxies': HKLBproxies,
                                        'url': 'http://cp.cloudflare.com/generate_204', 'interval': 300, })
         content["proxy-groups"][0]['proxies'].insert(0, "HKLB")
 
-    Latencyproxies = []
-    for proxy in content['proxies']:
-        if proxy['server'] == '127.0.0.1':
-            continue
-        Latencyproxies.append(proxy['name'])
     if len(Latencyproxies) > 0:
         content['proxy-groups'].append({'name': "AllLatency", 'type': "url-test", 'proxies': Latencyproxies,
                                        'url': 'http://cp.cloudflare.com/generate_204', 'interval': 300, 'tolerance': 50, })
@@ -98,7 +102,8 @@ def precompile(subscribe_url):
         ],
         "fallback-filter": {'geoip': True, ' ipcidr': ["240.0.0.0/4", "0.0.0.0/32"]},
     }
-    print(yaml.safe_dump(content))
+    return yaml.safe_dump(content)
 
 
-precompile('https://sub.yyw.moe')
+for subscribe_url in subscribe_urls:
+    print(precompile(subscribe_url))

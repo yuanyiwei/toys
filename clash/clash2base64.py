@@ -1,4 +1,3 @@
-from email.quoprimime import quote
 import requests
 import base64
 import yaml

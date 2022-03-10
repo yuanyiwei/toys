@@ -9,7 +9,7 @@
 - `vps-backup`: 不稳定的月抛机器需要备份，利用 rclone 每天备份数据到科带 A1 (或其他授权) O365 账号的 1drv 中，计时器用 crontab 或者 systemd.timer 均可。
 - `chn-ip`: 获取中国 IP 地址，自用。
 - `stat`: 从 MobaXterm 里找出来的获取资源占用的脚本，无需 Root，关于 MobaXterm 本地怎么处理还没看，netstat 处理有点问题。
-- `clash`: clash2base64 是 clash 订阅转 v2ray base64 订阅，自用。
+- `clash`: clash2base64 是 clash 订阅转 v2ray base64 订阅，precompile 是类似 mixin 的转换，但是手机上没有 mixin，仅供自用。
 
 _Deprecated_:
 

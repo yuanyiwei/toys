@@ -58,10 +58,10 @@ def precompile(subscribe_url):
                                   'user-agent': 'clash'}).text
     content = yaml.safe_load(return_content)
     content['rules'] = Rules
-    content['rules'].append("MATCH," + content['proxy-groups'][0]['name'])
-
     content['proxy-groups'] = [{'name': 'Select',
                                 'type': 'select', 'proxies': []}]
+    content['rules'].append("MATCH," + content['proxy-groups'][0]['name'])
+
     HKLBproxies = []
     Latencyproxies = []
     AllSelectproxies = []

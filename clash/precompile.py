@@ -53,10 +53,16 @@ Rules = [
 ]
 
 
-def precompile(subscribe_url):
-    return_content = requests.get(subscribe_url, headers={
-                                  'user-agent': 'clash'}).text
-    content = yaml.safe_load(return_content)
+def precompile(subscribe_urls):
+    if len(subscribe_urls) > 0:
+        content = yaml.safe_load(requests.get(subscribe_urls[0], headers={
+            'user-agent': 'clash'}).text)
+        if len(subscribe_urls) > 1:
+            for subscribe_url in subscribe_urls[1:]:
+                content['proxies'] += yaml.safe_load(requests.get(subscribe_url, headers={
+                    'user-agent': 'clash'}).text)['proxies']
+    else:
+        return 'bad input'
     content['rules'] = Rules
     content['proxy-groups'] = [{'name': 'Select',
                                 'type': 'select', 'proxies': []}]
@@ -86,7 +92,7 @@ def precompile(subscribe_url):
     if len(AllSelectproxies) > 0:
         content['proxy-groups'].append({'name': "AllSelect", 'type': "select", 'proxies': AllSelectproxies,
                                        'url': 'http://cp.cloudflare.com/generate_204', 'interval': 300, 'tolerance': 50, })
-        content["proxy-groups"][0]['proxies'].insert(0, "AllSelect")
+        content["proxy-groups"][0]['proxies'].append("AllSelect")
 
     content['dns'] = {
         'enable': True,
@@ -112,5 +118,4 @@ def precompile(subscribe_url):
     return yaml.safe_dump(content)
 
 
-for subscribe_url in subscribe_urls:
-    print(precompile(subscribe_url))
+print(precompile(subscribe_urls))

@@ -115,6 +115,21 @@ EOF
 systemctl daemon-reload
 }
 
+use_xanmod(){ #使用xanmod kernel
+echo 'deb http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-kernel.list
+wget -qO - https://dl.xanmod.org/gpg.key | apt-key --keyring /etc/apt/trusted.gpg.d/xanmod-kernel.gpg add -
+# curl -s https://dl.xanmod.org/gpg.key | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/xanmod-kernel.gpg --import
+apt -qq update && apt install -qqy linux-xanmod
+sysctl net.core.default_qdisc
+# net.core.default_qdisc = fq_pie
+sysctl net.ipv4.tcp_available_congestion_control
+# net.ipv4.tcp_available_congestion_control = reno bbr2
+lsmod | grep bbr
+# apt purge linux-image-5.10.0-12-amd64 linux-image-amd64
+# apt install linux-image-cloud-amd64
+}
+
 tcp_tune
 # enable_forwarding
 ulimit_tune
+use_xanmod

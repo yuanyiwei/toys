@@ -133,16 +133,3 @@ mv ddns /usr/local/bin
 # acme.sh --upgrade --auto-upgrade
 # acme.sh --issue --standalone --server letsencrypt -d s.yyw.moe --keylength ec-256
 # acme.sh --install-cert -d s.yyw.moe --ecc --fullchain-file ~/tls/cert.crt --key-file ~/tls/cert.key
-
-
-## BBR, use xanmod kernel instead
-# echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
-# echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
-# sysctl -p
-echo 'deb http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-kernel.list
-wget -qO - https://dl.xanmod.org/gpg.key | apt-key --keyring /etc/apt/trusted.gpg.d/xanmod-kernel.gpg add -
-# curl -s https://dl.xanmod.org/gpg.key | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/xanmod-kernel.gpg --import
-apt update && apt install linux-xanmod
-sysctl net.core.default_qdisc
-sysctl net.ipv4.tcp_available_congestion_control
-# lsmod | grep bbr

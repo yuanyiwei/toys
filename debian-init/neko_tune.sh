@@ -120,16 +120,34 @@ echo 'deb http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xan
 wget -qO - https://dl.xanmod.org/gpg.key | apt-key --keyring /etc/apt/trusted.gpg.d/xanmod-kernel.gpg add -
 # curl -s https://dl.xanmod.org/gpg.key | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/xanmod-kernel.gpg --import
 apt -qq update && apt install -qqy linux-xanmod
-sysctl net.core.default_qdisc
-# net.core.default_qdisc = fq_pie
-sysctl net.ipv4.tcp_available_congestion_control
-# net.ipv4.tcp_available_congestion_control = reno bbr2
-lsmod | grep bbr
-# apt purge linux-image-5.10.0-12-amd64 linux-image-amd64
-# apt install linux-image-cloud-amd64
+# sysctl net.core.default_qdisc
+# # net.core.default_qdisc = fq_pie
+# sysctl net.ipv4.tcp_available_congestion_control
+# # net.ipv4.tcp_available_congestion_control = reno bbr2
+# lsmod | grep bbr
+# apt purge linux-image-amd64
+}
+
+use_cloud(){ #使用cloud kernel
+apt -qq update && apt install -qqy linux-image-cloud-amd64
+sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
+cat >> /etc/sysctl.conf << EOF
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+EOF
+sysctl -p && sysctl --system
+# sysctl net.core.default_qdisc
+# # net.core.default_qdisc = fq
+# sysctl net.ipv4.tcp_available_congestion_control
+# # net.ipv4.tcp_available_congestion_control = reno cubic bbr
+# lsmod | grep bbr
+# # tcp_bbr                20480  23
+# apt purge linux-image-amd64
 }
 
 tcp_tune
 # enable_forwarding
 ulimit_tune
-use_xanmod
+# use_xanmod
+use_cloud

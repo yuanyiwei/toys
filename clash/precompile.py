@@ -111,7 +111,7 @@ def precompile(subscribe_urls):
             "https://cloudflare-dns.com/dns-query",
             "https://dns.google/dns-query",
         ],
-        "fallback-filter": {'geoip': True, ' ipcidr': ["240.0.0.0/4", "0.0.0.0/32"]},
+        "fallback-filter": {'geoip': True, ' ipcidr': ["240.0.0.0/4", "127.0.0.1/8", "0.0.0.0/32"]},
     }
     return yaml.safe_dump(content)
 

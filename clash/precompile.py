@@ -7,48 +7,18 @@ subscribe_urls = [
 ]
 
 Rules = [
-    "DOMAIN-SUFFIX,ip6-localhost,DIRECT",
-    "DOMAIN-SUFFIX,ip6-loopback,DIRECT",
-    "DOMAIN-SUFFIX,local,DIRECT",
-    "DOMAIN-SUFFIX,localhost,DIRECT",
-    "IP-CIDR,10.0.0.0/8,DIRECT,no-resolve",
-    "IP-CIDR,100.64.0.0/10,DIRECT,no-resolve",
-    "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve",
-    "IP-CIDR,172.16.0.0/12,DIRECT,no-resolve",
-    "IP-CIDR,192.168.0.0/16,DIRECT,no-resolve",
-    "IP-CIDR,198.18.0.0/16,DIRECT,no-resolve",
-    "IP-CIDR6,::1/128,DIRECT,no-resolve",
-    "IP-CIDR6,fc00::/7,DIRECT,no-resolve",
-    "IP-CIDR6,fe80::/10,DIRECT,no-resolve",
-    "IP-CIDR6,fd00::/8,DIRECT,no-resolve",
-
-    "DOMAIN-SUFFIX,ads.gmodules.com,REJECT",
-    "DOMAIN-SUFFIX,ads.google.com,REJECT",
-    "DOMAIN-SUFFIX,adservice.google.com,REJECT",
-    "DOMAIN-SUFFIX,afd.l.google.com,REJECT",
-    "DOMAIN-SUFFIX,badad.googleplex.com,REJECT",
-    "DOMAIN-SUFFIX,csi.gstatic.com,REJECT",
-    "DOMAIN-SUFFIX,google-analytics.com,REJECT",
-    "DOMAIN-SUFFIX,googleadservices.com,REJECT",
-    "DOMAIN-SUFFIX,googleadsserving.cn,REJECT",
-    "DOMAIN-SUFFIX,googlecommerce.com,REJECT",
-    "DOMAIN-SUFFIX,googlesyndication.com,REJECT",
-    "DOMAIN-SUFFIX,mobileads.google.com,REJECT",
-    "DOMAIN-SUFFIX,pagead-tpc.l.google.com,REJECT",
-    "DOMAIN-SUFFIX,pagead.google.com,REJECT",
-    "DOMAIN-SUFFIX,pagead.l.google.com,REJECT",
-
-    "DOMAIN,dl.google.com,DIRECT",
-    "DOMAIN-SUFFIX,fonts.googleapis.com,DIRECT",
-    "DOMAIN-SUFFIX,fonts.gstatic.com,DIRECT",
-    "DOMAIN-SUFFIX,alt1-mtalk.google.com,DIRECT",
-    "DOMAIN-SUFFIX,alt2-mtalk.google.com,DIRECT",
-    "DOMAIN-SUFFIX,alt3-mtalk.google.com,DIRECT",
-    "DOMAIN-SUFFIX,alt4-mtalk.google.com,DIRECT",
-    "DOMAIN-SUFFIX,alt5-mtalk.google.com,DIRECT",
-    "DOMAIN-SUFFIX,alt6-mtalk.google.com,DIRECT",
-    "DOMAIN-SUFFIX,alt7-mtalk.google.com,DIRECT",
-    "DOMAIN-SUFFIX,alt8-mtalk.google.com,DIRECT",
+    "RULE-SET,applications,DIRECT",
+    "DOMAIN,clash.razord.top,DIRECT",
+    "DOMAIN,yacd.haishan.me,DIRECT",
+    "RULE-SET,private,DIRECT",
+    "RULE-SET,reject,REJECT",
+    "RULE-SET,icloud,DIRECT",
+    "RULE-SET,apple,DIRECT",
+    "RULE-SET,google,DIRECT",
+    "RULE-SET,direct,DIRECT",
+    "RULE-SET,lancidr,DIRECT",
+    "RULE-SET,cncidr,DIRECT",
+    "GEOIP,LAN,DIRECT",
     "GEOIP,CN,DIRECT",
 ]
 
@@ -67,6 +37,34 @@ def precompile(subscribe_urls):
     content['proxy-groups'] = [{'name': 'Select',
                                 'type': 'select', 'proxies': []}]
     content['rules'].append("MATCH," + content['proxy-groups'][0]['name'])
+    content['rule-providers'] = {'reject':
+                                 {'type': 'http', 'behavior': 'domain', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt',
+                                     'path': './ruleset/reject.yaml', 'interval': 86400},
+                                 'icloud':
+                                 {'type': 'http', 'behavior': 'domain', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt',
+                                  'path': './ruleset/icloud.yaml', 'interval': 86400},
+                                 'apple':
+                                 {'type': 'http', 'behavior': 'domain', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt',
+                                  'path': './ruleset/apple.yaml', 'interval': 86400},
+                                 'google':
+                                 {'type': 'http', 'behavior': 'domain', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt',
+                                  'path': './ruleset/google.yaml', 'interval': 86400},
+                                 'direct':
+                                 {'type': 'http', 'behavior': 'domain', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt',
+                                  'path': './ruleset/direct.yaml', 'interval': 86400},
+                                 'private':
+                                 {'type': 'http', 'behavior': 'domain', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt',
+                                     'path': './ruleset/private.yaml', 'interval': 86400},
+                                 'cncidr':
+                                 {'type': 'http', 'behavior': 'ipcidr', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt',
+                                     'path': './ruleset/cncidr.yaml', 'interval': 86400},
+                                 'lancidr':
+                                 {'type': 'http', 'behavior': 'ipcidr', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt',
+                                     'path': './ruleset/lancidr.yaml', 'interval': 86400},
+                                 'applications':
+                                 {'type': 'http', 'behavior': 'classical', 'url': 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt',
+                                     'path': './ruleset/applications.yaml', 'interval': 86400}
+                                 }
 
     HKproxies = []
     Allproxies = []

@@ -27,7 +27,7 @@ fi
 apt update -qq
 apt upgrade -qqy
 ## should update to stable first and use `apt upgrade --without-new-pkgs` and `apt full-upgrade`
-apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils mtr-tiny fail2ban # (fail2ban with python2.7 in buster)
+apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils mtr-tiny # fail2ban # (fail2ban with python2.7 in buster)
 apt install -qqy nload iftop vnstat vnstati sysstat
 # apt install -qqy wireguard # resolvconf
 ## apt install -qqy ipset ipset-persistent

@@ -66,28 +66,28 @@ def precompile(subscribe_urls):
                                      'path': './ruleset/applications.yaml', 'interval': 86400}
                                  }
 
-    HKproxies = []
+    # HKproxies = []
     Allproxies = []
 
     for proxy in content['proxies']:
         if proxy['server'] == '127.0.0.1':
             continue
-        if proxy['name'].find('Hong Kong') != -1 or proxy['name'].find('HK') != -1 or proxy['name'].find('hk') != -1:
-            HKproxies.append(proxy['name'])
+        # if proxy['name'].find('Hong Kong') != -1 or proxy['name'].find('HK') != -1 or proxy['name'].find('hk') != -1:
+        #     HKproxies.append(proxy['name'])
         Allproxies.append(proxy['name'])
 
-    if len(HKproxies) > 0:
-        content['proxy-groups'].append({'name': "HK", 'type': "url-test", 'proxies': HKproxies,
-                                       'url': 'http://www.google.com/generate_204', 'interval': 300, })
-        # content['proxy-groups'].append({'name': "HKLB", 'type': "load-balance", 'proxies': HKLBproxies,
-        #                                'url': 'http://cp.cloudflare.com/generate_204', 'interval': 300, })
-        content["proxy-groups"][0]['proxies'].insert(0, "HK")
+    # if len(HKproxies) > 0:
+    #     content['proxy-groups'].append({'name': "HK", 'type': "url-test", 'proxies': HKproxies,
+    #                                    'url': 'http://www.google.com/generate_204', 'interval': 300, })
+    #     # content['proxy-groups'].append({'name': "HKLB", 'type': "load-balance", 'proxies': HKLBproxies,
+    #     #                                'url': 'http://cp.cloudflare.com/generate_204', 'interval': 300, })
+    #     content["proxy-groups"][0]['proxies'].insert(0, "HK")
     if len(Allproxies) > 0:
         content['proxy-groups'].append({'name': "AllLatency", 'type': "url-test", 'proxies': Allproxies,
                                        'url': 'http://www.google.com/generate_204', 'interval': 300, 'tolerance': 50, })
-        content["proxy-groups"][0]['proxies'].insert(0, "AllLatency")
         content['proxy-groups'].append({'name': "AllSelect", 'type': "select", 'proxies': Allproxies,
                                        'url': 'http://cp.cloudflare.com/generate_204', 'interval': 300, 'tolerance': 50, })
+        content["proxy-groups"][0]['proxies'].insert(0, "AllLatency")
         content["proxy-groups"][0]['proxies'].append("AllSelect")
 
     content['dns'] = {

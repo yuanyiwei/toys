@@ -129,6 +129,17 @@ apt -qq update && apt install -qqy linux-xanmod
 }
 
 use_cloud(){ #使用cloud kernel
+# https://raw.githubusercontent.com/jinwyp/one_click_script/master/install_kernel.sh
+# https://hostloc.com/thread-644985-1-1.html
+# 优质线路用5.5+cake和原版bbr带宽跑的更足，不过cake的话就算高峰也不会像原版bbr那样跑不动，相比plus能慢些，但是区别不大，
+# bbr plus的话美西或者一些延迟高的，用起来更好，锐速针对丢包高的有奇效
+# 带宽大，并且延迟低不丢包的话5.5+cake在我这比较好，延迟高用plus更好，丢包多锐速最好. 一般130ms以下用cake不错，以上的话用plus更好些
+# https://github.com/xanmod/linux/issues/26
+# 说白了 bbrplus 就是改了点东西，然后那部分修改在 5.1 内核里合并进去了, 5.1 及以上的内核里自带的 bbr 已经包含了所谓的 bbrplus 的修改。
+# PS：bbr 是一直在修改的，比如说 5.0 内核的 bbr，4.15 内核的 bbr 和 4.9 内核的 bbr 其实都是不一样的
+
+# https://raw.githubusercontent.com/ylx2016/Linux-NetSpeed/master/tcpx.sh
+
 apt -qq update && apt install -qqy linux-image-cloud-amd64
 sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
 sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf

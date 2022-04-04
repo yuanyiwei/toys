@@ -141,6 +141,14 @@ sysctl -p && sysctl --system
 # # net.core.default_qdisc = fq
 # sysctl net.ipv4.tcp_available_congestion_control
 # # net.ipv4.tcp_available_congestion_control = reno cubic bbr
+# sysctl net.ipv4.tcp_allowed_congestion_control
+# # net.ipv4.tcp_allowed_congestion_control = reno cubic bbr
+# cat /proc/sys/net/ipv4/tcp_allowed_congestion_control
+# # reno cubic bbr
+# sysctl net.ipv4.tcp_congestion_control
+# # net.ipv4.tcp_congestion_control = bbr
+# cat /proc/sys/net/ipv4/tcp_congestion_control
+# # bbr
 # lsmod | grep bbr
 # # tcp_bbr                20480  23
 # apt purge linux-image-amd64

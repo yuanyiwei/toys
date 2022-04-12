@@ -55,6 +55,8 @@ EOF
 # net.core.netdev_max_backlog = 32768
 # net.ipv4.tcp_timestamps = 0
 # net.ipv4.tcp_max_orphans = 32768
+# net.core.rmem_default = 4000000
+# net.core.wmem_default = 4000000
 sysctl -p && sysctl --system
 }
 

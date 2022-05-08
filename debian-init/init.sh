@@ -81,6 +81,8 @@ iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A INPUT -p tcp --tcp-flags RST RST -j DROP
+iptables -A INPUT -p tcp --tcp-flags ALL RST,ACK -j DROP
+iptables -A INPUT -p tcp --tcp-flags ALL RST -j DROP
 iptables -P INPUT DROP
 iptables -A OUTPUT -p tcp --dport 25 -j DROP
 iptables -A OUTPUT -p tcp --dport 465 -j DROP

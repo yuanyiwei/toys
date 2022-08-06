@@ -6,7 +6,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 
-## mainly for foreign x64 Debian11 VPSs
+## mainly for foreign x64 Debian VPSs
 
 
 ## change source in china
@@ -16,6 +16,11 @@ fi
 # sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 # sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
 
+## sourcelist example in hk
+# deb https://mirrors.xtom.com.hk/debian/ bullseye main non-free contrib
+# deb https://mirrors.xtom.com.hk/debian-security/ bullseye-security main
+# deb https://mirrors.xtom.com.hk/debian/ bullseye-updates main non-free contrib
+# deb https://mirrors.xtom.com.hk/debian/ bullseye-backports main non-free contrib
 
 # apt upgrade --without-new-pkgs
 # apt full-upgrade
@@ -39,26 +44,27 @@ apt install -qqy bmon vnstat sysstat # nload iftop vnstati
 
 
 ## SSH
+mkdir /root/.ssh 2>&1
+curl https://github.com/yuanyiwei.keys > /root/.ssh/authorized_keys
+chmod 644 /root/.ssh/authorized_keys
+chmod 755 /root/.ssh # ? Authentication refused: bad ownership or modes for directory /home/yyw/.ssh
+
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
 sed -i 's/^.\?Port .*/Port 22/' /etc/ssh/sshd_config
 sed -i 's/^.\?PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
 sed -i 's/^.\?PubkeyAuthentication .*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 sed -i 's/^.\?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
 
-mkdir /root/.ssh 2>&1
-curl https://github.com/yuanyiwei.keys > /root/.ssh/authorized_keys
-chmod 644 /root/.ssh/authorized_keys
-chmod 755 /root/.ssh # ? Authentication refused: bad ownership or modes for directory /home/yyw/.ssh
-
 systemctl restart sshd
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
-echo 'precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }' >> /root/.zshrc # For OSC1337
+## use dotfiles repo instead
+# sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
+# echo 'precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }' >> /root/.zshrc # For OSC1337
 # chsh -s /usr/bin/zsh
 # echo 'set -g mouse on' >> /root/.tmux.conf
 
-echo -e "[user]\n\tname = totoro\n\temail = totoro@yyw.moe" > /root/.gitconfig
+# echo -e "[user]\n\tname = totoro\n\temail = totoro@yyw.moe" > /root/.gitconfig
 ## use gpg in desktop
 # echo -e "[user]\n\tname = totoro\n\temail = totoro@yyw.moe\n\tsigningkey = 544765FB\n[commit]\n\tgpgSign = true" > /root/.gitconfig
 # gpg --import-options restore --import private.gpg
@@ -94,13 +100,11 @@ iptables -A OUTPUT -p tcp --dport 587 -j DROP
 # apt install -qqy rclone
 # rclone mount backup:/backup /srv
 
-
 ## backup
 # mkdir /root/backup -p
 # curl https://raw.githubusercontent.com/yuanyiwei/toys/master/vps-backup/backup.sh -OL
 # mv ./backup.sh /root
 ## do not mix tmp backup script with the specific one in rclone
-
 
 ## gost
 # gost_version=2.11.1
@@ -109,20 +113,11 @@ iptables -A OUTPUT -p tcp --dport 587 -j DROP
 # chmod +x gost-linux-amd64-${gost_version}
 # mv gost-linux-amd64-${gost_version} /usr/local/bin/gost
 
-
-## ehco
-# ehco_version=1.1.1
-# curl -L https://github.com/Ehco1996/ehco/releases/download/v${ehco_version}/ehco_${ehco_version}_linux_amd64 -O
-# mv ehco_${ehco_version}_linux_amd64 /usr/local/bin/ehco
-# chmod +x /usr/local/bin/ehco
-
-
 ## ddns, for config.json in /etc/ddns and edit first
 # wget https://github.com/NewFuture/DDNS/releases/download/v2.10.3/ddns
 # chmod +x ddns
 # mv ddns /usr/local/bin
 # # cd /etc/ddns && ddns
-
 
 ## acme
 # wget -O -  https://get.acme.sh | sh

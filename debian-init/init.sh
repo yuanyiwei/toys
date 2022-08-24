@@ -81,8 +81,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -p icmp -j ACCEPT
-iptables -A INPUT -p udp --dport 443 -j ACCEPT
-iptables -A INPUT -p udp --dport 80 -j ACCEPT
+# iptables -A INPUT -p udp -j ACCEPT
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT

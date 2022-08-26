@@ -32,15 +32,19 @@ fi
 apt update -qq
 apt upgrade -qqy
 ## should update to stable first and use `apt upgrade --without-new-pkgs` and `apt full-upgrade`
-apt install -qqy git wget curl zsh python3 python3-pip jq tmux vim iptables-persistent htop socat dnsutils mtr-tiny # fail2ban # (fail2ban with python2.7 in buster)
-apt install -qqy bmon vnstat sysstat # nload iftop vnstati
-# apt install -qqy wireguard # resolvconf
-## apt install -qqy ipset ipset-persistent
-# apt install -qqy iptraf-ng
+apt install -qqy git curl zsh python3 python3-pip jq tmux vim iptables-persistent htop dnsutils mtr-tiny # wget socat fail2ban # (fail2ban with python2.7 in buster)
+apt install -qqy nload vnstat sysstat # bmon iftop vnstati
+# apt install -qqy wireguard # resolvconf iptraf-ng
+# apt install -qqy ipset ipset-persistent
 # apt install -qqy proxychains4
+
 # apt install -qqy docker.io docker-compose # (with python2.7 in buster)
+# echo '{
+#   "iptables": false
+# }' > /etc/docker/daemon.json
+# reboot # no save iptables of docker
+
 ## can add netdata, cockpit, glances (python) or telegraf later to monitor vps
-# apt install -qqy netdata
 
 
 ## SSH
@@ -78,10 +82,10 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # /etc/init.d/ipset-persistent save
 
 ## save iptables
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -p icmp -j ACCEPT
-# iptables -A INPUT -p udp -j ACCEPT
+iptables -A INPUT -p udp -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT

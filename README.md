@@ -15,7 +15,7 @@ _Deprecated_:
 - `clashr-for-linux` : 在 Linux 上管理 clash 订阅（那时 clash 核心还不支持 SSR、linux 上也没有 [juewuy/ShellClash](https://github.com/juewuy/ShellClash)、[Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg) 这种先进的客户端），现在都有 Clash for Windows for Linux 了 QaQ。
 - `clash`: clash2base64 是 clash 订阅转 v2ray base64 订阅，precompile 是类似 mixin 的转换，但是手机上没有 mixin，仅供自用。懒得维护了。
 - `autojs` : 一些 auto.js 驱动的脚本。
-- `pdf-catalog`: 结合 <https://github.com/ifnoelse/pdf-bookmark> 项目，用 Python 正则和 OCR 识别给没有目录的 PDF 加上目录，里面是第三版龙书的样例。
+- `pdf-catalog`: 结合 <https://github.com/ifnoelse/pdf-bookmark> 项目，用 Python 正则和 OCR 识别给没有目录的 PDF 加上目录，里面是第三版龙书和组合数学引论的样例。
 - `tqm-ping`: [科带教学质量管理平台](https://tqm.ustc.edu.cn/)的油猴一键评价脚本。（已经没法用了，大四了也用不到了）
 - `python-proxy`: 学习 FSM。
 

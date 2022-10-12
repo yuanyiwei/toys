@@ -75,6 +75,9 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # expect -c 'spawn gpg --edit-key EDE2551D6DE7B751168AE6FCD546F016544765FB trust quit; send "5\ry\r"; expect eof'
 
 
+ln -sf /usr/share/zoneinfo/Asia/Hong_Kong /etc/localtime
+
+
 ## add ipset to ACCEPT
 # ipset create whitelist hash:net
 # iptables -A INPUT -m set --match-set whitelist src -j ACCEPT

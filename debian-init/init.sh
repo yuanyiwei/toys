@@ -32,7 +32,7 @@ fi
 apt update -qq
 apt upgrade -qqy
 ## should update to stable first and use `apt upgrade --without-new-pkgs` and `apt full-upgrade`
-apt install -qqy git curl zsh python3 python3-pip jq tmux vim iptables-persistent htop dnsutils mtr-tiny # wget socat fail2ban # (fail2ban with python2.7 in buster)
+apt install -qqy git curl zsh python3 python3-pip jq tmux vim iptables-persistent htop dnsutils mtr-tiny lsof # wget socat fail2ban # (fail2ban with python2.7 in buster)
 apt install -qqy nload vnstat sysstat # bmon iftop vnstati
 # apt install -qqy wireguard # resolvconf iptraf-ng
 # apt install -qqy ipset ipset-persistent
@@ -62,6 +62,7 @@ sed -i 's/^.\?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/ssh
 systemctl restart sshd
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 ## use dotfiles repo instead
 # sed -i 's/ZSH_THEME=.*/ZSH_THEME="ys"/' /root/.zshrc
 # echo 'precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }' >> /root/.zshrc # For OSC1337

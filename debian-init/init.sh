@@ -39,6 +39,7 @@ apt install -qqy nload vnstat sysstat # bmon iftop vnstati
 # apt install -qqy proxychains4
 
 # apt install -qqy docker.io docker-compose # (with python2.7 in buster)
+## apt install apparmor apparmor-utils # fix apparmor error on hetzner
 # echo '{
 #   "iptables": false
 # }' > /etc/docker/daemon.json

@@ -14,5 +14,5 @@ if [ -z "$uuid" -o -z "$type" ]; then
     exit 1
 fi
 
-echo "Fstab content is: $uuid $path $type defaults 0 0"
+echo "Fstab content is: $uuid $path $type defaults,nofail 0 0"
 echo "You should do this first: mkdir -p $path"

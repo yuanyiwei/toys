@@ -2,20 +2,21 @@
 
 一些玩具，放一些小到不适合单独开仓库的代码和项目。
 
-- `tmux-run`: 一个 `run_gost.sh` 的小样例脚本，可以定义 tmux 窗口的 session、title 等信息。
-- `debian-init`: 买了很多月抛机器，init 到手累了，写了个初始化脚本。
-- `vps-backup`: 不稳定的月抛机器需要备份，利用 rclone 每天备份数据到科带 A1 (或其他授权) O365 账号的 1drv 中，计时器用 crontab 或者 systemd.timer 均可。
-- `chn-ip`: 获取中国 IP 地址，自用。
-- `stat`: 从 MobaXterm 里找出来的获取资源占用的脚本，无需 Root，关于 MobaXterm 本地怎么处理还没看，netstat 处理有点问题。
 - `genfstab.sh`: 方便地生成 fstab。
+- `leetcode`: 存点 leetcode 上的提交。
 
 _Deprecated_:
 
+- `tmux-run`: 一个 `run_gost.sh` 的小样例脚本，可以定义 tmux 窗口的 session、title 等信息。
+- `debian-init`: 买了很多月抛机器，init 到手累了，写了个初始化脚本。不买 vps 故 archive 了。
+- `vps-backup`: 不稳定的月抛机器需要备份，利用 rclone 每天备份数据到科带 A1 (或其他授权) O365 账号的 1drv 中，计时器用 crontab 或者 systemd.timer 均可。不买 vps 故 archive 了。
+- `chn-ip`: 获取 [nadoo/glider](https://github.com/nadoo/glider) 中国 IP 的路由，自用。
+- `stat`: 从 MobaXterm 里找出来的获取资源占用的脚本，无需 Root，关于 MobaXterm 本地怎么处理还没看，netstat 处理有点问题。只对 bash 和 zsh 兼容，换了 fish 后就不用了。
 - `tr-auto-refresh`: transmission 自动刷新 tracker，参照 <https://yqf3139.github.io/2016/09/10/find-more-transmission-peers-to-boost-seeding-speed-automaticly/>，加入了 Auth 头，是 user:pass 的 base64。（现在基本上都在用 qBittorrent 了）
 - `auto-wlt`: [科带网络通](http://wlt.ustc.edu.cn/)断网重连脚本。（感觉最近几个月都没断过了）
 - `clashr-for-linux` : 在 Linux 上管理 clash 订阅（那时 clash 核心还不支持 SSR、linux 上也没有 [juewuy/ShellClash](https://github.com/juewuy/ShellClash)、[Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg) 这种先进的客户端），现在都有 Clash for Windows for Linux 了 QaQ。
-- `clash`: clash2base64 是 clash 订阅转 v2ray base64 订阅，precompile 是类似 mixin 的转换，但是手机上没有 mixin，仅供自用。懒得维护了。
-- `autojs` : 一些 auto.js 驱动的脚本。
+- `clash-sub`: clash2base64 是 clash 订阅转 v2ray base64 订阅，precompile 是类似 mixin 的转换，但是手机上没有 mixin，仅供自用。懒得维护了。
+- `autojs` : 一些 auto.js 驱动的脚本，过气了。
 - `pdf-catalog`: 结合 <https://github.com/ifnoelse/pdf-bookmark> 项目，用 Python 正则和 OCR 识别给没有目录的 PDF 加上目录，里面是第三版龙书和组合数学引论的样例。
 - `tqm-ping`: [科带教学质量管理平台](https://tqm.ustc.edu.cn/)的油猴一键评价脚本。（已经没法用了，大四了也用不到了）
 - `python-proxy`: 学习 FSM。

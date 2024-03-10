@@ -14,7 +14,7 @@ func findMin(nums []int) int {
         mid := (l + r) / 2
         if nums[r] > nums[mid] {
             r = mid
-        } else { 
+        } else {
             l = mid + 1
         }
     }
